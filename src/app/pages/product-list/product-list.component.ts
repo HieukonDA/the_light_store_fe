@@ -7,11 +7,10 @@ import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product.model';
 
 @Component({
-  selector: 'app-product-list',
-  standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule],
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss'
+    selector: 'app-product-list',
+    imports: [RouterLink, CommonModule, FormsModule],
+    templateUrl: './product-list.component.html',
+    styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent implements OnInit {
   private productService = inject(ProductService);

@@ -5,11 +5,10 @@ import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/product.model';
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [RouterLink, CommonModule],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+    selector: 'app-cart',
+    imports: [RouterLink, CommonModule],
+    templateUrl: './cart.component.html',
+    styleUrl: './cart.component.scss'
 })
 export class CartComponent {
   private cartService = inject(CartService);

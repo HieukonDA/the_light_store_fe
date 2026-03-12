@@ -6,11 +6,10 @@ import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product.model';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [RouterLink, CommonModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    imports: [RouterLink, CommonModule],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   private productService = inject(ProductService);

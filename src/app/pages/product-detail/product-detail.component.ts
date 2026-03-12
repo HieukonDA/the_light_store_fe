@@ -6,11 +6,10 @@ import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product.model';
 
 @Component({
-  selector: 'app-product-detail',
-  standalone: true,
-  imports: [RouterLink, CommonModule],
-  templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss'
+    selector: 'app-product-detail',
+    imports: [RouterLink, CommonModule],
+    templateUrl: './product-detail.component.html',
+    styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
