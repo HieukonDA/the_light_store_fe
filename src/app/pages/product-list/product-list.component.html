@@ -1,0 +1,120 @@
+<div class="product-list-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>Shop All Lights</h1>
+      <p>{{ filteredProducts.length }} products found</p>
+    </div>
+
+    <!-- Filters Bar -->
+    <div class="filters-bar">
+      <!-- Search -->
+      <div class="search-filter">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="onSearchChange()"
+          placeholder="Search products..."
+          class="filter-input"
+        />
+      </div>
+
+      <!-- Sort -->
+      <div class="sort-filter">
+        <select [(ngModel)]="sortBy" (ngModelChange)="onSortChange()" class="filter-select">
+          <option value="default">Sort: Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Highest Rated</option>
+          <option value="name">Name A-Z</option>
+        </select>
+      </div>
+
+      <!-- Clear Filters -->
+      @if (selectedCategory !== 'All' || sortBy !== 'default' || searchQuery) {
+        <button class="clear-btn" (click)="clearFilters()">Clear Filters ✕</button>
+      }
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+      @for (category of categories; track category) {
+        <button
+          class="category-tab"
+          [class.active]="selectedCategory === category"
+          (click)="onCategoryChange(category)"
+        >
+          {{ category }}
+        </button>
+      }
+    </div>
+
+    <!-- Loading State -->
+    @if (loading) {
+      <div class="loading-grid">
+        @for (item of [1,2,3,4,5,6,7,8]; track item) {
+          <div class="skeleton-card"></div>
+        }
+      </div>
+    }
+
+    <!-- Products Grid -->
+    @if (!loading) {
+      @if (filteredProducts.length === 0) {
+        <div class="empty-state">
+          <span class="empty-icon">🔍</span>
+          <h3>No products found</h3>
+          <p>Try adjusting your filters or search terms</p>
+          <button class="btn btn-primary" (click)="clearFilters()">Clear Filters</button>
+        </div>
+      } @else {
+        <div class="products-grid">
+          @for (product of filteredProducts; track product.id) {
+            <div class="product-card">
+              @if (!product.inStock) {
+                <span class="out-of-stock-overlay">Out of Stock</span>
+              }
+              @if (product.badge) {
+                <span class="product-badge" [class]="'badge-' + product.badge.toLowerCase().replace(' ', '-')">
+                  {{ product.badge }}
+                </span>
+              }
+              <a [routerLink]="['/products', product.id]" class="product-image-link">
+                <img [src]="product.imageUrl" [alt]="product.name" loading="lazy" />
+              </a>
+              <div class="product-info">
+                <span class="product-category">{{ product.category }}</span>
+                <h3>
+                  <a [routerLink]="['/products', product.id]">{{ product.name }}</a>
+                </h3>
+                <div class="product-rating">
+                  <div class="stars">
+                    @for (star of getStarArray(product.rating); track $index) {
+                      <span [class]="star ? 'star filled' : 'star'">★</span>
+                    }
+                  </div>
+                  <span class="review-count">({{ product.reviewCount }})</span>
+                </div>
+                <div class="product-footer">
+                  <div class="product-price">
+                    <span class="price">${{ product.price.toFixed(2) }}</span>
+                    @if (product.originalPrice) {
+                      <span class="original-price">${{ product.originalPrice.toFixed(2) }}</span>
+                    }
+                  </div>
+                  <button
+                    class="add-to-cart-btn"
+                    (click)="addToCart(product, $event)"
+                    [disabled]="!product.inStock"
+                  >
+                    {{ product.inStock ? '+ Cart' : 'Sold Out' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</div>

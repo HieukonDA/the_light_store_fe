@@ -1,0 +1,157 @@
+<div class="product-detail-page">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a routerLink="/">Home</a>
+      <span>/</span>
+      <a routerLink="/products">Shop</a>
+      @if (product) {
+        <span>/</span>
+        <span>{{ product.name }}</span>
+      }
+    </nav>
+
+    @if (loading) {
+      <div class="loading-skeleton">
+        <div class="skeleton-image"></div>
+        <div class="skeleton-info">
+          <div class="skeleton-line lg"></div>
+          <div class="skeleton-line md"></div>
+          <div class="skeleton-line sm"></div>
+          <div class="skeleton-line xl"></div>
+        </div>
+      </div>
+    }
+
+    @if (!loading && product) {
+      <div class="product-detail">
+        <!-- Product Image -->
+        <div class="product-image-section">
+          <div class="main-image-container">
+            @if (product.badge) {
+              <span class="product-badge" [class]="'badge-' + product.badge.toLowerCase().replace(' ', '-')">
+                {{ product.badge }}
+              </span>
+            }
+            <img [src]="product.imageUrl" [alt]="product.name" />
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info-section">
+          <span class="product-category">{{ product.category }}</span>
+          <h1>{{ product.name }}</h1>
+
+          <!-- Rating -->
+          <div class="product-rating">
+            <div class="stars">
+              @for (star of getStarArray(product.rating); track $index) {
+                <span [class]="star ? 'star filled' : 'star'">★</span>
+              }
+            </div>
+            <span class="rating-value">{{ product.rating }}</span>
+            <span class="review-count">{{ product.reviewCount }} reviews</span>
+          </div>
+
+          <!-- Price -->
+          <div class="product-price">
+            <span class="price">${{ product.price.toFixed(2) }}</span>
+            @if (product.originalPrice) {
+              <span class="original-price">${{ product.originalPrice.toFixed(2) }}</span>
+              <span class="discount-badge">-{{ getDiscountPercent() }}%</span>
+            }
+          </div>
+
+          <!-- Stock Status -->
+          <div class="stock-status" [class.out-of-stock]="!product.inStock">
+            <span class="status-dot"></span>
+            <span>{{ product.inStock ? 'In Stock' : 'Out of Stock' }}</span>
+          </div>
+
+          <!-- Description -->
+          <p class="product-description">{{ product.description }}</p>
+
+          <!-- Quantity -->
+          @if (product.inStock) {
+            <div class="quantity-section">
+              <label>Quantity</label>
+              <div class="quantity-control">
+                <button (click)="decreaseQty()" [disabled]="quantity <= 1">−</button>
+                <span>{{ quantity }}</span>
+                <button (click)="increaseQty()">+</button>
+              </div>
+            </div>
+          }
+
+          <!-- Add to Cart Button -->
+          <button
+            class="add-to-cart-btn"
+            [class.added]="addedToCart"
+            (click)="addToCart()"
+            [disabled]="!product.inStock"
+          >
+            @if (addedToCart) {
+              ✓ Added to Cart!
+            } @else {
+              {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
+            }
+          </button>
+
+          <!-- Features -->
+          <div class="product-features">
+            <div class="feature">
+              <span>🚚</span>
+              <span>Free shipping on orders over $75</span>
+            </div>
+            <div class="feature">
+              <span>↩️</span>
+              <span>30-day free returns</span>
+            </div>
+            <div class="feature">
+              <span>🔒</span>
+              <span>Secure checkout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      @if (relatedProducts.length > 0) {
+        <section class="related-products">
+          <h2>Related Products</h2>
+          <div class="related-grid">
+            @for (related of relatedProducts; track related.id) {
+              <div class="product-card">
+                <a [routerLink]="['/products', related.id]" class="product-image-link">
+                  <img [src]="related.imageUrl" [alt]="related.name" loading="lazy" />
+                </a>
+                <div class="product-info">
+                  <h3>
+                    <a [routerLink]="['/products', related.id]">{{ related.name }}</a>
+                  </h3>
+                  <div class="product-footer">
+                    <span class="price">${{ related.price.toFixed(2) }}</span>
+                    <button
+                      class="add-btn"
+                      (click)="addRelatedToCart(related, $event)"
+                      [disabled]="!related.inStock"
+                    >+ Cart</button>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </section>
+      }
+    }
+
+    @if (!loading && !product) {
+      <div class="not-found">
+        <span class="not-found-icon">💡</span>
+        <h2>Product Not Found</h2>
+        <p>The product you're looking for doesn't exist or has been removed.</p>
+        <a routerLink="/products" class="btn btn-primary">Browse All Products</a>
+      </div>
+    }
+  </div>
+</div>

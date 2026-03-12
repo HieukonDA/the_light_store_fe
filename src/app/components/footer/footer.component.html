@@ -1,0 +1,53 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon">💡</span>
+          <span class="logo-text">The Light Store</span>
+        </div>
+        <p>Illuminate your world with our curated collection of premium lighting solutions for every space and style.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Shop</h4>
+        <ul>
+          <li><a routerLink="/products" [queryParams]="{category: 'Pendant Lights'}">Pendant Lights</a></li>
+          <li><a routerLink="/products" [queryParams]="{category: 'Chandeliers'}">Chandeliers</a></li>
+          <li><a routerLink="/products" [queryParams]="{category: 'Floor Lamps'}">Floor Lamps</a></li>
+          <li><a routerLink="/products" [queryParams]="{category: 'Table Lamps'}">Table Lamps</a></li>
+          <li><a routerLink="/products" [queryParams]="{category: 'Outdoor'}">Outdoor</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Warranty</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} The Light Store. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Twitter">🐦</a>
+      </div>
+    </div>
+  </div>
+</footer>
