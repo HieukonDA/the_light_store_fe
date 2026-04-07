@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
@@ -73,3 +72,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 >>>>>>> 319d7943eb92281fd1ae97024839c4a4b0cccaaa
+>>>>>>> 31d34478f1c3b28622c882b5edb7cc91ece2a1bf

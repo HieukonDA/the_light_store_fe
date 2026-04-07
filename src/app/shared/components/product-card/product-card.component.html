@@ -1,0 +1,76 @@
+<article class="w-[270px] flex flex-col gap-4 group cursor-pointer">
+
+  <div class="w-full h-[250px] relative bg-neutral-100 rounded overflow-hidden flex items-center justify-center">
+
+    <div
+      class="absolute top-3 left-3 px-3 py-1 bg-red-500 rounded text-neutral-50 text-xs font-normal font-['Poppins'] z-10">
+      -{{ product.discount}}%
+    </div>
+
+    <div
+      class="absolute top-3 right-3 flex flex-col gap-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <button
+        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition-colors shadow-sm">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      </button>
+      <button
+        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-blue-50 hover:text-blue-500 transition-colors shadow-sm">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+      </button>
+    </div>
+
+    <img class="w-[190px] h-[190px] object-contain transition-transform duration-500 group-hover:scale-110"
+      [src]="product.image" [alt]="product.name" />
+
+    <button
+      class="absolute bottom-0 left-0 w-full h-10 bg-black text-white text-base font-medium font-['Poppins'] rounded-b flex items-center justify-center gap-2 opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-gray-800">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      Add To Cart
+    </button>
+
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h3 class="text-black text-base font-medium font-['Poppins'] truncate hover:text-blue-600 transition-colors">
+      {{ product.name }}
+    </h3>
+
+    <div class="flex items-center gap-3">
+      <span class="text-red-500 text-base font-medium font-['Poppins']">${{ product.price }}</span>
+      <span class="text-black opacity-50 text-base font-medium font-['Poppins'] line-through">${{ product.originalPrice }}</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <div class="flex items-center text-amber-400 gap-1">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+        <svg class="w-4 h-4 fill-current opacity-25" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+      </div>
+      <span class="text-black opacity-50 text-sm font-semibold font-['Poppins']">(75)</span>
+    </div>
+  </div>
+
+</article>
