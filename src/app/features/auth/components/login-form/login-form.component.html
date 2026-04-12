@@ -1,0 +1,46 @@
+<div class="inline-flex flex-col justify-start items-start gap-10">
+  
+  <div class="flex flex-col justify-start items-start gap-6">
+    <h1 class="justify-start text-black text-4xl font-medium font-['Inter'] leading-8 tracking-wider">Log in to Exclusive</h1>
+    <p class="justify-start text-black text-base font-normal font-['Poppins'] leading-6">Enter your details below</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="w-full p-4 bg-red-50 border border-red-200 rounded text-red-600 text-sm">
+    {{ errorMessage }}
+  </div>
+  
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col justify-start items-start gap-10 w-full">
+    
+    <div class="flex flex-col justify-start items-start gap-10 w-full">
+      
+      <div class="flex flex-col justify-start items-start gap-2 w-full">
+        <label for="login-email" class="sr-only">Email or Phone Number</label>
+        <input type="text" id="login-email" formControlName="email" placeholder="Email or Phone Number" 
+               class="w-96 pb-2 bg-transparent text-black text-base font-normal font-['Poppins'] leading-6 placeholder:text-black/40 border-b border-black/50 focus:outline-none focus:border-black transition-colors" />
+        <span *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-red-500 text-sm">Vui lòng nhập email hoặc số điện thoại</span>
+      </div>
+
+      <div class="flex flex-col justify-start items-start gap-2 w-full">
+        <label for="login-password" class="sr-only">Password</label>
+        <input type="password" id="login-password" formControlName="password" placeholder="Password" 
+               class="w-96 pb-2 bg-transparent text-black text-base font-normal font-['Poppins'] leading-6 placeholder:text-black/40 border-b border-black/50 focus:outline-none focus:border-black transition-colors" />
+        <span *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-red-500 text-sm">Password phải có ít nhất 6 ký tự</span>
+      </div>
+
+    </div>
+
+    <div class="inline-flex justify-start items-center gap-20 w-full">
+      
+      <button type="submit" [disabled]="isLoading || loginForm.invalid" class="px-12 py-4 bg-red-500 rounded inline-flex justify-center items-center gap-2.5 hover:bg-red-600 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+        <span *ngIf="!isLoading" class="justify-start text-neutral-50 text-base font-medium font-['Poppins'] leading-6">Log In</span>
+        <span *ngIf="isLoading" class="justify-start text-neutral-50 text-base font-medium font-['Poppins'] leading-6">Đang xử lý...</span>
+      </button>
+      
+      <a routerLink="/forgot-password" class="justify-start text-red-500 text-base font-normal font-['Poppins'] leading-6 hover:text-red-700 hover:underline transition-all cursor-pointer">
+        Forget Password?
+      </a>
+      
+    </div>
+  </form>
+</div>

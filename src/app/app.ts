@@ -12,10 +12,4 @@ import { TopHeaderComponent } from "./core/layout/top-header/top-header.componen
 })
 export class App {
   protected readonly title = signal('thelightstore_fe');
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
-})
-export class App {
-  protected readonly title = signal('the-light-store-fe');
->>>>>>> 31d34478f1c3b28622c882b5edb7cc91ece2a1bf
 }

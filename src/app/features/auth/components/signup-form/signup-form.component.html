@@ -1,0 +1,69 @@
+<div class="inline-flex flex-col justify-start items-start gap-12">
+  
+  <div class="flex flex-col justify-start items-start gap-6">
+    <h1 class="justify-start text-black text-4xl font-medium font-['Inter'] leading-8 tracking-wider">Create an account</h1>
+    <p class="justify-start text-black text-base font-normal font-['Poppins'] leading-6">Enter your details below</p>
+  </div>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="flex flex-col justify-start items-center gap-10 w-full">
+    
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="w-full p-4 bg-red-50 border border-red-200 rounded text-red-600 text-sm">
+      {{ errorMessage }}
+    </div>
+    
+    <div class="flex flex-col justify-start items-start gap-10 w-full">
+      
+      <div class="flex flex-col justify-start items-start gap-2 w-full">
+        <label for="name" class="sr-only">Name</label>
+        <input type="text" id="name" formControlName="name" placeholder="Name" 
+               class="w-96 pb-2 bg-transparent text-black text-base font-normal font-['Poppins'] leading-6 placeholder:text-black/40 border-b border-black/50 focus:outline-none focus:border-black transition-colors" />
+        <span *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" class="text-red-500 text-sm">Vui lòng nhập tên (tối thiểu 2 ký tự)</span>
+      </div>
+
+      <div class="flex flex-col justify-start items-start gap-2 w-full">
+        <label for="email" class="sr-only">Email or Phone Number</label>
+        <input type="text" id="email" formControlName="email" placeholder="Email or Phone Number" 
+               class="w-96 pb-2 bg-transparent text-black text-base font-normal font-['Poppins'] leading-6 placeholder:text-black/40 border-b border-black/50 focus:outline-none focus:border-black transition-colors" />
+        <span *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-500 text-sm">Vui lòng nhập email hợp lệ</span>
+      </div>
+
+      <div class="flex flex-col justify-start items-start gap-2 w-full">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" formControlName="password" placeholder="Password" 
+               class="w-96 pb-2 bg-transparent text-black text-base font-normal font-['Poppins'] leading-6 placeholder:text-black/40 border-b border-black/50 focus:outline-none focus:border-black transition-colors" />
+        <span *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-500 text-sm">Password phải có ít nhất 6 ký tự</span>
+      </div>
+
+    </div>
+
+    <div class="flex flex-col justify-start items-start gap-4 w-full">
+      
+      <button type="submit" [disabled]="isLoading || signupForm.invalid" class="w-96 py-4 bg-red-500 rounded inline-flex justify-center items-center gap-2.5 hover:bg-red-600 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+        <span *ngIf="!isLoading" class="justify-start text-neutral-50 text-base font-medium font-['Poppins'] leading-6">Create Account</span>
+        <span *ngIf="isLoading" class="justify-start text-neutral-50 text-base font-medium font-['Poppins'] leading-6">Đang xử lý...</span>
+      </button>
+
+      <div class="flex flex-col justify-start items-center gap-8 w-96">
+        
+        <button type="button" class="w-full py-4 rounded outline outline-1 outline-offset-[-1px] outline-black/40 flex justify-center items-center gap-4 hover:bg-gray-50 transition-colors cursor-pointer">
+          <div class="w-6 h-6 relative overflow-hidden">
+            <div class="w-3 h-3 left-[12.24px] top-[9.84px] absolute bg-blue-500"></div>
+            <div class="w-5 h-2.5 left-[1.52px] top-[14.30px] absolute bg-green-600"></div>
+            <div class="w-1.5 h-2.5 left-[0.24px] top-[6.61px] absolute bg-yellow-500"></div>
+            <div class="w-5 h-2.5 left-[1.52px] top-0 absolute bg-red-500"></div>
+          </div>
+          <span class="justify-start text-black text-base font-normal font-['Poppins'] leading-6">Sign up with Google</span>
+        </button>
+
+        <div class="inline-flex justify-start items-center gap-4">
+          <span class="opacity-70 justify-start text-black text-base font-normal font-['Poppins'] leading-6">Already have account?</span>
+          <a routerLink="/auth/login" class="opacity-70 justify-start text-black text-base font-medium font-['Poppins'] leading-6 border-b border-black/50 hover:text-black hover:border-black transition-colors cursor-pointer pb-0.5">
+            Log in
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </form>
+</div>
